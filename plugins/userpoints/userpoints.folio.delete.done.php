@@ -16,11 +16,9 @@
  */
 defined('COT_CODE') or die('Wrong URL.');
 
-require_once cot_incfile('userpoints', 'plug');
+global $db_userpoints, $db_users;
 
-if($ritem['item_state'] == 0)
-{
-	cot_setuserpoints(-$cfg['plugin']['userpoints']['portfolioaddtocat'], 'portfoliodeltocat', $ritem['item_userid'], $id);
-}
+$db->delete($db_userpoints, "item_type IN ('portfolioaddtocat', 'portfoliodeltocat') AND item_itemid=".$id);
 
-?>
+$uuserpoints = $db->query("SELECT SUM(item_point) as summ FROM $db_userpoints WHERE item_userid=" . (int)$ritem['item_userid'])->fetchColumn();
+$db->update($db_users, array('user_userpoints' => $uuserpoints), "user_id=" . (int)$ritem['item_userid']);
