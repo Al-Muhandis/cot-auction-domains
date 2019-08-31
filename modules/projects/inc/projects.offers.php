@@ -381,8 +381,8 @@ while ($offer = $sql->fetch())
 		"OFFER_ROW_DATE" => cot_date('d.m.Y H:i', $offer['offer_date']),
 		"OFFER_ROW_DATE_STAMP" => $offer['offer_date'],
 		"OFFER_ROW_TEXT" => cot_parse($offer['offer_text']),
-		"OFFER_ROW_COSTMIN" => (floor($offer['offer_cost_min']) != $offer['offer_cost_min']) ? number_format($offer['offer_cost_min'], '2', '.', ' ') : number_format($offer['offer_cost_min'], '0', '.', ' '),
-		"OFFER_ROW_COSTMAX" => (floor($offer['offer_cost_max']) != $offer['offer_cost_max']) ? number_format($offer['offer_cost_max'], '2', '.', ' ') : number_format($offer['offer_cost_max'], '0', '.', ' '),
+		"OFFER_ROW_COSTMIN" => number_format($offer['offer_cost_min'], '0', '.', ' '),
+		"OFFER_ROW_COSTMAX" => number_format($offer['offer_cost_max'], '0', '.', ' '),
 		"OFFER_ROW_TIMEMIN" => $offer['offer_time_min'],
 		"OFFER_ROW_TIMEMAX" => $offer['offer_time_max'],
 		"OFFER_ROW_TIMETYPE" => $L['offers_timetype'][$offer['offer_time_type']],
@@ -398,7 +398,7 @@ while ($offer = $sql->fetch())
 			$uname = mb_strtoupper($exfld['field_name']);
 			$t_o->assign(array(
 				'OFFER_ROW_' . $uname . '_TITLE' => isset($L['offers_' . $exfld['field_name'] . '_title']) ? $L['offers_' . $exfld['field_name'] . '_title'] : $exfld['field_description'],
-				'OFFER_ROW_' . $uname => cot_build_extrafields_data('offers', $exfld, $offer['offer_' . $exfld['field_name']])
+				'OFFER_ROW_' . $uname => cot_build_extrafields_data('offers', $exfld, $offer['item_' . $exfld['field_name']])
 			));
 		}
 	}

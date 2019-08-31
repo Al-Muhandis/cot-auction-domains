@@ -76,10 +76,6 @@ $sqllist = $db->query("SELECT * FROM $db_projects AS p
 	" . $order . "
 	LIMIT $d, " . $cfg['projects']['cat___default']['maxrowsperpage']);
 
-/* === Hook === */
-$extpcr = cot_getextplugins('projects.userdetails.catrow.loop');
-/* ===== */
-
 foreach ($sql_projects_count_cat as $value) {
 	$page_nav[$value['item_cat']] = $value['cat_count'];
 	$t1->assign(array(
@@ -89,14 +85,6 @@ foreach ($sql_projects_count_cat as $value) {
 		"PRJ_CAT_ROW_COUNT_PROJECTS" => $value['cat_count'], 
 		"PRJ_CAT_ROW_SELECT" => ($category && $category == $value['item_cat']) ? 1 : '' 
 		));
-
-	/* === Hook === */
-	foreach ($extpcr as $pl)
-	{
-		include $pl;
-	}
-	/* ===== */
-
 	$t1->parse("MAIN.CAT_ROW");
 }
 
@@ -145,7 +133,7 @@ foreach($sqllist_rowset as $item)
 	$t1->parse("MAIN.PRJ_ROWS");
 }
 
-	/* === Hook === */
+/* === Hook === */
 	foreach (cot_getextplugins('projects.userdetails.tags') as $pl)
 	{
 		include $pl;
@@ -158,10 +146,5 @@ $t->assign(array(
 	"USERS_DETAILS_PROJECTS_COUNT" => $projects_count_all,
 	"USERS_DETAILS_PROJECTS_URL" => cot_url('users', 'm=details&id=' . $urr['user_id'] . '&u=' . $urr['user_name'] . '&tab=projects'),
 ));
-/* === Hook === */
-foreach (cot_getextplugins('projects.userdetails.details.tags') as $pl)
-{
-	include $pl;
-}
-/* ===== */
+
 $t->assign('PROJECTS', $t1->text("MAIN"));

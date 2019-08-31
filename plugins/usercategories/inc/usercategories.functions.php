@@ -4,7 +4,7 @@
  * User Categories plugin
  *
  * @package usercategories
- * @version 2.6.1
+ * @version 2.5.6
  * @author CMSWorks Team
  * @copyright Copyright (c) CMSWorks.ru, littledev.ru
  * @license BSD
@@ -47,31 +47,19 @@ function cot_cfg_usercategories()
  */
 function cot_usercategories_sync($cat)
 {
-	global $db, $db_structure, $db_users, $cache;
-	
-	$parent = cot_structure_parents('usercategories', $cat, 'first');
-	$cats = cot_structure_children('usercategories', $parent, true, true);
-
-	foreach($cats as $c)
-	{
-		$subcats = cot_structure_children('usercategories', $c, true, true);
-		if(count($subcats) > 0){
-			$cat_query = array();
-			foreach ($subcats as $val) {
-				$cat_query[] = "FIND_IN_SET('".$db->prep($val)."', user_cats)";
-			}
-			$where = implode(' OR ', $cat_query);
-		}else{
-			$where = "FIND_IN_SET('".$db->prep($cat)."', user_cats)";
+	global $db, $db_structure, $db_users;
+	$subcats = cot_structure_children('usercategories', $cat);
+	if(count($subcats) > 0){
+		foreach ($subcats as $val) {
+			$cat_query[] = "FIND_IN_SET('".$db->prep($val)."', user_cats)";
 		}
-		$count = $db->query("SELECT COUNT(*) FROM $db_users WHERE ".$where)->fetchColumn();
-		$db->query("UPDATE $db_structure SET structure_count=".(int)$count." WHERE structure_area='usercategories' AND structure_code = ?", $c);
-		if($cat == $c) $catcount = $count;
+		$where = implode(' OR ', $cat_query);
+	}else{
+		$where = "FIND_IN_SET('".$db->prep($cat)."', user_cats)";
 	}
-	
-	$cache && $cache->db->remove('structure', 'system');
-	
-	return $catcount;
+	$sql = $db->query("SELECT COUNT(*) FROM $db_users
+		WHERE ".$where);
+	return (int)$sql->fetchColumn();
 }
 
 /**

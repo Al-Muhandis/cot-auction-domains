@@ -17,7 +17,7 @@ defined('COT_CODE') or die('Wrong URL.');
  */
 $L['cfg_pagelimit'] = array('Items count in lists');
 $L['cfg_indexlimit'] = array('Items count on index');
-$L['cfg_offersperpage'] = array('Offers count on project page');
+$L['cfg_offersperpage'] = array('Offers count on request page');
 $L['cfg_shorttextlen'] = array('Text limit in lists');
 $L['cfg_prevalidate'] = array('Enable prevalidation');
 $L['cfg_preview'] = array('Enable preview');
@@ -28,32 +28,30 @@ $L['cfg_prjsitemap_prio'] = array('Priority on Sitemap');
 $L['cfg_description'] = array('Description');
 $L['cfg_prjsearch'] = array('Enable search');
 $L['cfg_license'] = array('License key');
-$L['cfg_default_type'] = array('Default projects type');
-$L['cfg_notif_admin_moderate'] = array('Notify on new projects at checkout','Send email for new projects in the pre-moderation');
-$L['cfg_prjeditor'] = 'Configurable visual editor';
-$L['cfg_prjeditor_params'] = 'Disable,Minimal set of buttons, Standard set of buttons, Advanced set of buttons';
+$L['cfg_default_type'] = array('Default requests type');
+$L['cfg_notif_admin_moderate'] = array('Notify on new requests at checkout','Send email for new requests in the pre-moderation');
 
-$L['info_desc'] = 'Module publishing projects';
+$L['info_desc'] = 'Module publishing requests';
 
-$L['projects_select_cat'] = "Select the category of project";
+$L['projects_select_cat'] = "Select the category of request";
 $L['projects_locked_cat'] = "Selected category blocked";
 $L['projects_empty_title'] = "Title is empty";
-$L['projects_empty_text'] = "Text of project is empty";
+$L['projects_empty_text'] = "Text of request is empty";
 
-$L['projects_forreview'] = 'Your project is submitted for review';
+$L['projects_forreview'] = 'Your request is submitted for review';
 $L['projects_isrealized'] = 'Executed!';
 
-$L['projects'] = 'Projects catalog';
-$L['projects_projects'] = 'Projects';
-$L['projects_myprojects'] = 'My projects';
+$L['projects'] = 'Requests catalog';
+$L['projects_projects'] = 'Requests';
+$L['projects_myprojects'] = 'My requests';
 $L['catalog'] = 'Catalog';
-$L['projects_add_to_catalog'] = 'Add project';
-$L['projects_edit_project'] = 'Edit project';
-$L['projects_add_project_title'] = 'Adding project';
-$L['projects_edit_project_title'] = 'Editing project';
+$L['projects_add_to_catalog'] = 'Add request';
+$L['projects_edit_project'] = 'Edit request';
+$L['projects_add_project_title'] = 'Adding request';
+$L['projects_edit_project_title'] = 'Editing request';
 
-$L['projects_hidden'] = 'Project is not active';
-$L['projects_success_projects'] = 'Successful projects';
+$L['projects_hidden'] = 'Request  is not active';
+$L['projects_success_projects'] = 'Successful requests';
 $L['projects_next'] = 'Next';
 $L['projects_reputation'] = 'Reputation';
 $L['projects_aliascharacters'] = 'Characters \'+\', \'/\', \'?\', \'%\', \'#\', \'&\' are not allowed in aliases';
@@ -65,37 +63,37 @@ $L['projects_admin_home_valqueue'] = 'In validation';
 $L['projects_admin_home_public'] = 'Published';
 $L['projects_admin_home_hidden'] = 'Hidden';
 
-$L['project_added_mail_subj'] = 'Your project has been published';
-$L['project_senttovalidation_mail_subj'] = 'Your project is submitted for review';
+$L['project_added_mail_subj'] = 'Your request has been published';
+$L['project_senttovalidation_mail_subj'] = 'Your request is submitted for review';
 
-$L['project_added_mail_body'] = 'Hello, {$user_name}. '."\n\n".'Your project "{$prj_name}" has been published on the website {$sitename} - {$link}';
-$L['project_senttovalidation_mail_body'] = 'Hello, {$user_name}. '."\n\n".'Your project "{$prj_name}" is submitted for review. A moderator will check it as soon as possible.';
+$L['project_added_mail_body'] = 'Hello, {$user_name}. '."\n\n".'Your request "{$prj_name}" has been published on the website {$sitename} - {$link}';
+$L['project_senttovalidation_mail_body'] = 'Hello, {$user_name}. '."\n\n".'Your request "{$prj_name}" is submitted for review. A moderator will check it as soon as possible.';
 
 $L['projects_price'] = 'Sted';
 
 $L['projects_types_edit'] = 'Edit types';
 $L['projects_types_new'] = 'Create category';
-$L['projects_types_editor'] = 'Editor project types';
+$L['projects_types_editor'] = 'Editor request types';
 $L['projects_price'] = 'Price';
 
 $L['projects_sendoffer'] = 'Add an offer';
-$L['projects_step2_title'] = 'Project preview';
+$L['projects_step2_title'] = 'Request  preview';
 $L['projects_step2_buy'] = 'Buy';
-$L['projects_step2_selectproject'] = 'Select a project';
+$L['projects_step2_selectproject'] = 'Select a request';
 $L['projects_nomoney'] = 'You have insufficient funds in the account to pay for the service.';
 
 $L['projects_costasc'] = 'Price Ascending';
 $L['projects_costdesc'] = 'Price descending';
 $L['projects_mostrelevant'] = 'The most urgent';
 
-$L['projects_notfound'] = 'Projects not found';
-$L['projects_empty'] = 'No projects';
+$L['projects_notfound'] = 'Requests not found';
+$L['projects_empty'] = 'No requests';
 
 $L['offers_timetype'] = array('hours', 'days', 'months');
 
 $L['offers_text_predl'] = 'Offer text';
 $L['offers_hide_offer'] = 'Make offer only visible to the customer';
-$L['offers_for_guest'] = 'Leave your suggestions on the project can only registered users with an account specialist.';
+$L['offers_for_guest'] = 'Leave your suggestions on the request can only registered users with an account specialist.';
 
 
 $L['offers_view_all'] = 'See all';
@@ -129,25 +127,25 @@ $L['performer_set_refuse'] = 'Being denied {$username}';
 $L['offers_add_msg'] = 'Send a message';
 $L['offers_posts_title'] = 'Posts';
 
-$L['project_added_offer_header'] = 'New msg of project «{$prtitle}»';
-$L['project_added_offer_body'] = 'Hi, {$user_name}. '."\n\n".'.{$offeruser_name} sent offer for your project "{$prj_name}".'."\n\n".'{$link}';
+$L['project_added_offer_header'] = 'New msg of request «{$prtitle}»';
+$L['project_added_offer_body'] = 'Hi, {$user_name}. '."\n\n".'.{$offeruser_name} sent offer for your request "{$prj_name}".'."\n\n".'{$link}';
 
-$L['project_added_post_header'] = 'New msg of project "{$prtitle}"';
-$L['project_added_post_body'] = 'Hi, {$user_name}. '."\n\n".'.{$postuser_name} sent message for your project "{$prj_name}".'."\n\n".'{$link}';
+$L['project_added_post_header'] = 'New msg of request "{$prtitle}"';
+$L['project_added_post_body'] = 'Hi, {$user_name}. '."\n\n".'.{$postuser_name} sent message for your request "{$prj_name}".'."\n\n".'{$link}';
 
-$L['project_setperformer_header'] = 'You have been selected for the project "{$prtitle}"';
-$L['project_setperformer_body'] = 'Hi, {$offeruser_name}. '."\n\n".'You have chosen contractor for the project "{$prj_name}".'."\n\n".'{$link}';
+$L['project_setperformer_header'] = 'You have been selected for the request "{$prtitle}"';
+$L['project_setperformer_body'] = 'Hi, {$offeruser_name}. '."\n\n".'You have chosen contractor for the request "{$prj_name}".'."\n\n".'{$link}';
 
-$L['project_refuse_header'] = 'Being denied the project «{$prtitle}»';
-$L['project_refuse_body'] = 'Hi, {$offeruser_name}. '."\n\n".'Being denied the project "{$prj_name}".'."\n\n".'{$link}';
+$L['project_refuse_header'] = 'Being denied the request «{$prtitle}»';
+$L['project_refuse_body'] = 'Hi, {$offeruser_name}. '."\n\n".'Being denied the request "{$prj_name}".'."\n\n".'{$link}';
 
 $L['project_notif_admin_moderate_mail_subj'] = 'The new draft for review';
-$L['project_notif_admin_moderate_mail_body'] = 'Hi, '."\n\n".'User {$user_name} submit new project "{$prj_name}".'."\n\n".'{$link}';
+$L['project_notif_admin_moderate_mail_body'] = 'Hi, '."\n\n".'User {$user_name} submit new request "{$prj_name}".'."\n\n".'{$link}';
 
 $L['project_realized'] = 'Mark executed';
 $L['project_unrealized'] = 'Mark unexecuted';
 
-$L['projects_license_error'] = 'Your license key is specified with an error or does not exist! Please enter a valid license key in the Projects module settings.';
+$L['projects_license_error'] = 'Your license key is specified with an error or does not exist! Please enter a valid license key in the Requests module settings.';
 
 $L['plu_prj_set_sec'] = 'Porjects categories';
 $L['plu_prj_res_sort1'] = 'Date';
@@ -155,7 +153,7 @@ $L['plu_prj_res_sort2'] = 'Title';
 $L['plu_prj_res_sort3'] = 'Popularity';
 $L['plu_prj_res_sort3'] = 'Category';
 $L['plu_prj_search_names'] = 'Search in titles';
-$L['plu_prj_search_text'] = 'Search in projects text';
+$L['plu_prj_search_text'] = 'Search in requests text';
 $L['plu_prj_set_subsec'] = 'Include subcategories';
 
-$Ls['projects_headermoderated'] = "moderated project,project on moderation,projects in moderation";
+$Ls['projects_headermoderated'] = "moderated request,request on moderation,projects in moderation";
