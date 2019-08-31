@@ -7,7 +7,7 @@
  * Version=2.6.1
  * Date=24.11.2012
  * Author=CMSWorks Team
- * Copyright=Copyright &copy; CMSWorks.ru, littledev.ru
+ * Copyright=Copyright (c) CMSWorks.ru, littledev.ru
  * Notes=
  * Auth_guests=R
  * Lock_guests=12345A
@@ -29,7 +29,6 @@
  * title_folio=10:string::{TITLE} - {CATEGORY}:
  * count_admin=11:radio::0: 
  * notiffolio_admin_moderate=12:radio::1:Уведомлять о новых портфолио на проверке
- * folioeditor=13:select:disable,minieditor,medieditor,editor:medieditor:
  * [END_COT_EXT_CONFIG]
  * 
  * [BEGIN_COT_EXT_CONFIG_STRUCTURE]

@@ -19,10 +19,12 @@ require_once cot_langfile('market', 'module');
 require_once cot_incfile('forms');
 require_once cot_incfile('extrafields');
 
-// Tables and extras
-cot::$db->registerTable('market');
+// Global variables
+global $cot_extrafields, $db_market, $db_market_orders, $db_x;
+$db_market = (isset($db_market)) ? $db_market : $db_x . 'market';
+$db_market_orders = (isset($db_market_orders)) ? $db_market_orders : $db_x . 'market_orders';
 
-cot_extrafields_register_table('market');
+$cot_extrafields[$db_market] = (!empty($cot_extrafields[$db_market])) ? $cot_extrafields[$db_market] : array();
 
 $structure['market'] = (is_array($structure['market'])) ? $structure['market'] : array();
 
@@ -105,12 +107,11 @@ function cot_build_structure_market_tree($parent = '', $selected = '', $level = 
 	{
 		$i18n_enabled = $i18n_read;
 		$children = array();
-		$allcat = cot_structure_children('market', '');		
-		foreach ($allcat as $x)
+		foreach ($structure['market'] as $i => $x)
 		{
-			if (mb_substr_count($structure['market'][$x]['path'], ".") == 0)
+			if (mb_substr_count($structure['market'][$i]['path'], ".") == 0)
 			{
-				$children[] = $x;
+				$children[] = $i;
 			}
 		}
 	}
@@ -287,7 +288,7 @@ function cot_generate_markettags($item_data, $tag_prefix = '', $textlength = 0, 
 			'CATPATH' => $catpath,
 			'TEXT' => $text,
 			'SHORTTEXT' => $text_cut,
-			'COST' => (floor($item_data['item_cost']) != $item_data['item_cost']) ? number_format($item_data['item_cost'], '2', '.', ' ') : number_format($item_data['item_cost'], '0', '.', ' '),
+			'COST' => number_format($item_data['item_cost'], '0', '.', ' '),
 			'DATE' => cot_date('datetime_medium', $item_data['item_date']),
 			'DATE_STAMP' => $item_data['item_date'],
 			'SHOW_URL' => $item_data['item_pageurl'],
@@ -738,8 +739,4 @@ function cot_market_selectcat($check, $name, $subcat = '', $hideprivate = true)
 	$result = cot_selectbox($check, $name, array_keys($result_array), array_values($result_array), true);
 
 	return($result);
-}
-
-if ($cfg['market']['markup'] == 1){
-  $prdeditor = $cfg['market']['prdeditor'];
 }

@@ -188,10 +188,7 @@ class mavatar
 			}
 			else
 			{
-				if(!$usr['isadmin'])
-				{
-					$query_string = " AND mav_userid=".$usr['id'];
-				}
+				$query_string = " AND mav_userid=".$usr['id'];
 			}
 
 			$oldmavatars = $db->query("SELECT * FROM $db_mavatars 

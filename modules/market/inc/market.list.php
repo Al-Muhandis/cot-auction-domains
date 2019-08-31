@@ -10,18 +10,13 @@
  * @license BSD
  */
 
+list($usr['auth_read'], $usr['auth_write'], $usr['isadmin']) = cot_auth('market', 'any', 'RWA');
+cot_block($usr['auth_read']);
+
 $sort = cot_import('sort', 'G', 'ALP');
 $c = cot_import('c', 'G', 'ALP');
 $sq = cot_import('sq', 'G', 'TXT');
 $sq = $db->prep($sq);
-
-if (!empty($c)){
-	list($usr['auth_read'], $usr['auth_write'], $usr['isadmin']) = cot_auth('market', $c);
-	cot_block($usr['auth_read']);
-}else{
-	list($usr['auth_read'], $usr['auth_write'], $usr['isadmin']) = cot_auth('market', 'any', 'RWA');
-	cot_block($usr['auth_read']);
-}
 
 $maxrowsperpage = ($cfg['market']['cat_' . $c]['maxrowsperpage']) ? $cfg['market']['cat_' . $c]['maxrowsperpage'] : $cfg['market']['cat___default']['maxrowsperpage'];
 list($pn, $d, $d_url) = cot_import_pagenav('d', $maxrowsperpage);
@@ -149,15 +144,12 @@ $t->assign(array(
 
 foreach($cot_extrafields[$db_market] as $exfld)
 {
-	$fld_value = cot_import($exfld['field_name'], 'G', 'TXT');
-	$fld_value = $db->prep($fld_value);
-
-	$fieldname = strtoupper($exfld['field_name']);
-	$exfld_val = cot_build_extrafields($exfld['field_name'], $exfld, $fld_value);
-	$exfld_title = isset($L['market_'.$exfld['field_name'].'_title']) ?  $L['market_'.$exfld['field_name'].'_title'] : $exfld['field_description'];
+	$uname = strtoupper($exfld['field_name']);
+	$exfld_val = cot_build_extrafields($exfld['field_name'], $exfld, $shfld[$exfld['field_name']]);
+	$exfld_title = isset($L['projects_'.$exfld['field_name'].'_title']) ?  $L['projects_'.$exfld['field_name'].'_title'] : $exfld['field_description'];
 	$t->assign(array(
-		'SEARCH_'.$fieldname => $exfld_val,
-		'SEARCH_'.$fieldname.'_TITLE' => $exfld_title,
+		'SEARCH_'.$uname => $exfld_val,
+		'SEARCH_'.$uname.'_TITLE' => $exfld_title,
 	));
 }
 

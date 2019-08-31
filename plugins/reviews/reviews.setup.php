@@ -24,7 +24,6 @@ checkprojects=01:radio::0:Check projects
 userall=01:radio::1:Show on user details page all reviews
 [END_COT_EXT_CONFIG]
 ==================== */
-
 /**
  * Reviews plugin
  *
@@ -34,3 +33,7 @@ userall=01:radio::1:Show on user details page all reviews
  * @copyright Copyright (c) CMSWorks.ru, littledev.ru
  * @license BSD
  */
+
+defined('COT_CODE') or die('Wrong URL');
+
+?>

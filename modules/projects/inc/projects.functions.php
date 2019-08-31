@@ -20,14 +20,15 @@ require_once cot_langfile('projects', 'module');
 require_once cot_incfile('forms');
 require_once cot_incfile('extrafields');
 
-// Tables and extras
-cot::$db->registerTable('projects');
-cot::$db->registerTable('projects_types');
-cot::$db->registerTable('projects_offers');
-cot::$db->registerTable('projects_posts');
+// Global variables
+global $cot_extrafields, $db_projects, $db_x, $db_projects_offers, $db_projects_posts, $db_x;
+$db_projects = (isset($db_projects)) ? $db_projects : $db_x . 'projects';
+$db_projects_types = (isset($db_projects_types)) ? $db_projects_types : $db_x . 'projects_types';
+$db_projects_offers = (isset($db_projects_offers)) ? $db_projects_offers : $db_x . 'projects_offers';
+$db_projects_posts = (isset($db_projects_posts)) ? $db_projects_posts : $db_x . 'projects_posts';
 
-cot_extrafields_register_table('projects');
-cot_extrafields_register_table('projects_offers');
+$cot_extrafields[$db_projects] = (!empty($cot_extrafields[$db_projects])) ? $cot_extrafields[$db_projects] : array();
+$cot_extrafields[$db_projects_offers] = (!empty($cot_extrafields[$db_projects_offers])) ? $cot_extrafields[$db_projects_offers] : array();
 
 $structure['projects'] = (is_array($structure['projects'])) ? $structure['projects'] : array();
 
@@ -289,7 +290,7 @@ function cot_generate_projecttags($item_data, $tag_prefix = '', $textlength = 0,
 			'CATPATH' => $catpath,
 			'TEXT' => $text,
 			'SHORTTEXT' => $text_cut,
-			'COST' => (floor($item_data['item_cost']) != $item_data['item_cost']) ? number_format($item_data['item_cost'], '2', '.', ' ') : number_format($item_data['item_cost'], '0', '.', ' '),
+			'COST' => number_format($item_data['item_cost'], '0', '.', ' '),
 			'TYPEID' => $item_data['item_type'],
 			'TYPE' => $projects_types[$item_data['item_type']],
 			'COUNT' => $item_data['item_count'],
@@ -765,8 +766,4 @@ function cot_projects_selectcat($check, $name, $subcat = '', $hideprivate = true
 	$result = cot_selectbox($check, $name, array_keys($result_array), array_values($result_array), true);
 
 	return($result);
-}
-
-if ($cfg['projects']['markup'] == 1){
-  $prjeditor = $cfg['projects']['prjeditor'];
 }
